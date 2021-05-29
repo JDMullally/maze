@@ -4,11 +4,11 @@ from maze import Maze
 import sys
 
 
-# Starts the game by drawing the maze and
 def draw_grid(window_size, color, screen, size):
-    rect = pygame.Rect((0, 0), (window_size, window_size))
-    pygame.draw.rect(screen, color, rect, 3)
+    """Draws a grid using the given size requirements"""
     val = window_size/size
+    rect = pygame.Rect(0, 0, window_size, window_size)
+    pygame.draw.rect(screen, color, rect, 3)
     for i in range(size):
         pygame.draw.line(screen, color, (0, i*val), (window_size, i*val), 3)
         pygame.draw.line(screen, color, (i * val, 0), (i * val, window_size), 3)
