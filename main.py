@@ -23,7 +23,6 @@ def destroy_walls(screen, color, window_size, size, nav):
         directions = nav.get(coordinate)
         for direction in directions:
             proper_dir = direction.direction
-            tuple_dir = proper_dir.convert()
             if proper_dir is Direction.DOWN:
                 rect = pygame.Rect(col * val + 2, row * val + val/2 + 2, val - 3, val)
                 rects.append(rect)
@@ -40,6 +39,11 @@ def destroy_walls(screen, color, window_size, size, nav):
         pygame.draw.rect(screen,
                          color,
                            rect, 0)
+    frac = (size - 1) * val
+    start = pygame.Rect(2, 2, val - 2, val - 2)
+    finish = pygame.Rect(frac + 2, frac + 2, val, val)
+    pygame.draw.rect(screen, (50, 128, 50), start, 0)
+    pygame.draw.rect(screen, (0, 255, 0), finish, 0)
 
 
 def start(nav, size):
@@ -80,7 +84,7 @@ def start(nav, size):
 if __name__ == '__main__':
     size = int(sys.argv[1])
     maze = Maze(size)
-    # maze.__str__()
+    maze.__str__()
     draw = maze.create_drawable_maze()
     nav = maze.create_navigable_maze()
     start(nav, size)
